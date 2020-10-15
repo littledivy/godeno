@@ -1,9 +1,8 @@
-
 use deno_core::plugin_api::*;
 use dlopen::symbor::Library;
-use std::rc::Rc;
-use std::ffi::CString;
 use libc::c_char;
+use std::ffi::CString;
+use std::rc::Rc;
 
 pub type GoDenoFn = extern "C" fn(arg: *const c_char);
 
@@ -41,8 +40,8 @@ fn call_op(_iface: &mut dyn Interface, buf: &mut [ZeroCopyBuf]) -> Op {
     let l = Rc::new(lib);
     let sym = unsafe { l.symbol::<GoDenoFn>(&sym_name) };
     if let Err(e) = sym {
-            eprintln!("Cannot find the init symbol: {:?}", e);
-            return Op::Sync(vec![].into_boxed_slice());
+        eprintln!("Cannot find the init symbol: {:?}", e);
+        return Op::Sync(vec![].into_boxed_slice());
     }
     let sym = sym.unwrap();
     sym(CString::new(arg).unwrap().as_ptr());

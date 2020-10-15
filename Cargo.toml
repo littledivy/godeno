@@ -7,7 +7,7 @@ license = "MIT"
 
 [lib]
 crate-type = ["cdylib"]
-path = "glue/lib.rs"
+path = "go_loader/lib.rs"
 
 [dependencies]
 deno_core = "0.61.0"
