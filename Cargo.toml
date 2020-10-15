@@ -1,0 +1,20 @@
+[package]
+name = "godeno"
+version = "0.1.0"
+authors = ["Divy Srivastava <dj.srivastava23@gmail.com>"]
+edition = "2018"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+path = "glue/lib.rs"
+
+[dependencies]
+deno_core = "0.61.0"
+dlopen = "0.1.8"
+futures = "0.3.6"
+libc = "0.2.79"
+
+[profile.release]
+lto = true
+opt-level = 3
