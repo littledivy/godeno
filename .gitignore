@@ -3,3 +3,4 @@ target/
 *.dylib
 *.dll
 *.h
+.deno_plugins/
